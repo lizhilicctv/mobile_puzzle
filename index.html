@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+		<title>移动拼图</title>
+		<!-- Bootstrap -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+		<!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+		<!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+		<!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+	</head>
+	<body style="background-color: #f1f1f1;">
+		<h2 style="text-align: center;padding: 15px;">李志立开发移动拼图游戏</h2>
+		<div class="container">
+			<div class="row" >
+				<div class="col-md-8 col-sm-12" id="all" style="background-color: #fefefe;">
+					<div id="d1" onclick="move(1)">
+						<img style="width: 100%;" src="img/1.jpg">
+					</div>
+					<div id="d2" onclick="move(2)">
+						<img style="width: 100%;" src="img/2.jpg">
+					</div>
+					<div id="d3" onclick="move(3)">
+						<img style="width: 100%;" src="img/3.jpg">
+					</div>
+					<div id="d4" onclick="move(4)">
+						<img style="width: 100%;" src="img/4.jpg">
+					</div>
+					<div id="d5" onclick="move(5)">
+						<img style="width: 100%;" src="img/5.jpg">
+					</div>
+					<div id="d6" onclick="move(6)">
+						<img style="width: 100%;" src="img/6.jpg">
+					</div>
+					<div id="d7" onclick="move(7)">
+						<img style="width: 100%;" src="img/7.jpg">
+					</div>
+					<div id="d8" onclick="move(8)">
+						<img style="width: 100%;" src="img/8.jpg">
+					</div>
+					<div id="d9" onclick="move(9)">
+						<img style="width: 100%;" src="img/9.jpg">
+					</div>
+					<div id="d10" onclick="move(10)">
+						<img style="width: 100%;" src="img/10.jpg">
+					</div>
+					<div id="d11" onclick="move(11)">
+						<img style="width: 100%;" src="img/11.jpg">
+					</div>
+					<div id="d12" onclick="move(12)">
+						<img style="width: 100%;" src="img/12.jpg">
+					</div>
+					<div id="d13" onclick="move(13)">
+						<img style="width: 100%;" src="img/13.jpg">
+					</div>
+					<div id="d14" onclick="move(14)">
+						<img style="width: 100%;" src="img/14.jpg">
+					</div>
+					<div id="d15" onclick="move(15)">
+						<img style="width: 100%;" src="img/15.jpg">
+					</div>
+					<div id="d16" onclick="move(16)">
+						<img style="width: 100%;" src="img/16.jpg">
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-12" style="padding: 15px 5px;">
+					<img style="width: 100%;" src="img/all.jpg">
+					<p style="padding: 8px 15px;font-size: 15px; line-height: 1.5;text-indent: 2em;">疫情在家，想起来小时候玩的拼图玩具，舍不得钱，就给闺女制作一个电脑版游戏，可玩性还是不错的，希望大家支持！！我的邮箱 <a href="mailto:lizhilimaster@163.com">lizhilimaster@163.com</a> </p>
+					<p style="padding: 8px 15px;font-size: 15px; line-height: 1.5;text-indent: 2em;"><span style="color: red;">游戏规则：</span>使用鼠标点击，或者使用键盘，调整位置，左边拼图，恢复原来图案。</p>
+					<p style="padding: 15px 30px;text-align: center;font-size: 19px;">
+						用时：<span id="time">0秒</span> <span style="margin: 0 10px;"></span>步数 <span id="bu">0</span>
+					</p>
+					<button id="start" type="button" class="btn btn-primary btn-block">开始</button>
+					<audio id="bof"  autoplay="autoplay" loop="loop">
+					  <source src="img/beijing.mp3"  type="audio/mp3" />
+					</audio>
+				</div>
+			</div>
+		</div>
+		<style type="text/css">
+			#all {
+				height: 750px;
+			}
+
+			#all>div {
+				width: 25%;
+				border: 1px solid #fff;
+				position: absolute;
+			}
+
+			#d1 {
+				left: 0%;
+			}
+
+			#d2 {
+				left: 25%;
+			}
+
+			#d3 {
+				left: 50%;
+			}
+
+			#d4 {
+				left: 75%;
+			}
+
+			#d5 {
+				left: 0%;
+				top: 25%;
+			}
+
+			#d6 {
+				left: 25%;
+				top: 25%;
+			}
+
+			#d7 {
+				left: 50%;
+				top: 25%;
+			}
+
+			#d8 {
+				left: 75%;
+				top: 25%;
+			}
+
+			#d9 {
+				left: 0%;
+				top: 50%;
+			}
+
+			#d10 {
+				left: 25%;
+				top: 50%;
+			}
+
+			#d11 {
+				left: 50%;
+				top: 50%;
+			}
+
+			#d12 {
+				left: 75%;
+				top: 50%;
+			}
+
+			#d13 {
+				left: 0%;
+				top: 75%;
+			}
+
+			#d14 {
+				left: 25%;
+				top: 75%;
+			}
+
+			#d15 {
+				left: 50%;
+				top: 75%;
+			}
+
+			#d16 {
+				left: 75%;
+				top: 75%;
+			}
+		</style>
+		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+		<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+		<script type="text/javascript">
+			let type = false;
+			let hour = 0;
+			let minute = 0;
+			let second = 0;
+			let int;
+			let d = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+			let d_direct = [
+				[0],
+				[2, 5],
+				[1, 3, 6],
+				[2, 4, 7],
+				[3, 8],
+				[1, 9, 6],
+				[2, 5, 7, 10],
+				[3, 6, 8, 11],
+				[4, 7, 12],
+				[5, 10, 13],
+				[6, 9, 11, 14],
+				[7, 10, 12, 15],
+				[8, 11, 16],
+				[9, 14],
+				[10, 13, 15],
+				[11, 14, 16],
+				[12, 15]
+			];
+			var d_posXY = new Array(
+				[0],
+				[0, 0],
+				[25, 0],
+				[50, 0],
+				[75, 0],
+				[0, 25],
+				[25, 25],
+				[50, 25],
+				[75, 25],
+				[0, 50],
+				[25, 50],
+				[50, 50],
+				[75, 50],
+				[0, 75],
+				[25, 75],
+				[50, 75],
+				[75, 75],
+			);
+
+			function move(num) {
+				if (!type) {
+					alert('请点击右侧开始游戏！')
+					return
+				}
+				let arr = d_direct[d.indexOf(num) + 1];
+				for (let s of arr) {
+					if (d[s - 1] == 1) {
+						man(s, num);
+						$('#bu').text(Number($('#bu').text()) + 1)
+						break
+					}
+				}
+				if (JSON.stringify(d) == JSON.stringify([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])) {
+					window.clearInterval(int);
+					$('#d1').show();
+					alert('恭喜你完成完成！用时：' + $('#time').text() + '！使用步数为：' + $('#bu').text());
+				}
+			}
+
+			function man(s, num) {
+				d[d.indexOf(num)] = 1;
+				d[s - 1] = num;
+				document.getElementById("d" + num).style.left = d_posXY[s][0] + "%";
+				document.getElementById("d" + num).style.top = d_posXY[s][1] + "%";
+			}
+
+			$('#start').click(function() {
+				if ($(this).text() == '重新开始') {
+					window.clearInterval(int);
+					type = true
+					$(this).removeClass('btn-primary').addClass('btn-default').text('重新开始');
+					$('#d1').hide();
+					second = 0;
+					minute = 0;
+					hour = 0;
+					int = setInterval(time, 1000)
+				} else {
+					type = true
+					$(this).removeClass('btn-primary').addClass('btn-default').text('重新开始');
+					$('#d1').hide();
+					int = setInterval(time, 1000)
+				}
+				$('#bu').text(0)
+				//生成随机地图
+				//模拟自动随机走160步
+				for (var i = 160; i >= 1; --i) {
+					map();
+					//	console.log(i);
+				}
+				//console.log(d);
+			})
+
+			function time() {
+				second++;
+				if (second >= 60) {
+					second = 0;
+					minute = minute + 1;
+				}
+				if (minute >= 60) {
+					minute = 0;
+					hour = hour + 1;
+				}
+				$('#time').text(hour + '时' + minute + '分' + second + '秒');
+			}
+
+			function map() {
+				let arr = d_direct[d.indexOf(1) + 1];
+				let sui = Math.floor(Math.random() * arr.length);
+				let div = d[arr[sui] - 1];
+				document.getElementById("d" + div).style.left = d_posXY[d.indexOf(1) + 1][0] + "%";
+				document.getElementById("d" + div).style.top = d_posXY[d.indexOf(1) + 1][1] + "%";
+				d[d.indexOf(1)] = d[arr[sui] - 1];
+				d[arr[sui] - 1] = 1;
+			}
+			$(document).keydown(function(event) {
+				//console.log(d);
+				if (!type) {
+					alert('请点击右侧开始游戏！')
+					return
+				}
+				let yi;
+				if(event.keyCode==37){
+					// 点击了 ← 这个
+					let fruits=[4,8,12,16];
+					if(fruits.indexOf(d.indexOf(1)+1)+1){
+						return
+					}
+					yi=d.indexOf(1)+2;
+				}
+				if(event.keyCode==38){
+					// 点击了 ↑ 这个
+					yi=d.indexOf(1)+5;
+				}
+				
+				if(event.keyCode==39){
+					// 点击了 → 这个
+					let fruits=[1,5,9,13];
+					if(fruits.indexOf(d.indexOf(1)+1)+1){
+						return
+					}
+					yi=d.indexOf(1);
+				}
+				if(event.keyCode==40){
+					// 点击了 ↓ 这个
+					yi=d.indexOf(1)-3;
+				}
+				//console.log(yi);
+				if(yi >16 || yi < 1){
+					return
+				}
+				document.getElementById("d" + d[yi-1]).style.left = d_posXY[d.indexOf(1)+1][0] + "%";
+				document.getElementById("d" + d[yi-1]).style.top = d_posXY[d.indexOf(1)+1][1] + "%";
+				d[d.indexOf(1)] = d[yi-1];
+				d[yi-1] = 1;
+				$('#bu').text(Number($('#bu').text()) + 1)
+				if (JSON.stringify(d) == JSON.stringify([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])) {
+					window.clearInterval(int);
+					$('#d1').show();
+					alert('恭喜你完成完成！用时：' + $('#time').text() + '！使用步数为：' + $('#bu').text());
+				}
+			});
+			$(function(){
+			    // 调整高度
+				$('#all').height($('#d1').width()*4);
+			});
+			$(window).resize(function() {
+			  $('#all').height($('#d1').width()*4);
+			});
+		</script>
+	</body>
+</html>
